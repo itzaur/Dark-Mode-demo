@@ -8,6 +8,7 @@
   --clr-s: 30%;
   --clr-l: 30%;
   --clr-white: hsl(0, 0%, 100%);
+  --clr-black: hsl(0, 0%, 0%);
   --clr-l-0: 0%;
   --clr-l-30: 30%;
   --clr-l-40: 40%;
@@ -17,6 +18,7 @@
 }
 
 body {
+  position: relative;
   background: hsl(0, 0%, var(--clr-l-100));
   color: hsl(0, 0%, var(--clr-l-0));
   font-size: 100%;
@@ -30,12 +32,19 @@ body > * + * {
   margin-top: 2rem;
 }
 
+body.dark {
+  --clr-l-100: 10%;
+}
+
 h1 {
   color: hsl(var(--clr-h), var(--clr-s), var(--clr-l-30));
 }
 
+.dark h1 {
+  --clr-l-30: 70%;
+}
+
 article {
-  --clr-l: 90%;
   background: hsl(var(--clr-h), var(--clr-s), var(--clr-l-90));
   border-radius: 0.3rem;
   overflow: hidden;
@@ -45,11 +54,19 @@ article > * + * {
   padding: 1rem;
 }
 
+.dark article {
+  --clr-l-90: 50%;
+}
+
 article h2 {
-  --clr-l: 40%;
   background: hsl(var(--clr-h), var(--clr-s), var(--clr-l-40));
-  color: var(--clr-white);
+  color: var(--clr-black);
   padding: 0.5rem 1rem;
+}
+
+.dark article h2 {
+  --clr-l-40: 60%;
+  color: var(--clr-white);
 }
 
 .alt {
@@ -57,6 +74,59 @@ article h2 {
   --clr-s: 40%;
   --clr-l: 90%;
   background: hsl(var(--clr-h), var(--clr-s), var(--clr-l));
+}
+
+.toggle-btn {
+  --clr-l: 90%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 4rem;
+  min-height: 2rem;
+  background: hsl(var(--clr-h), var(--clr-s), var(--clr-l));
+  border-radius: 1em;
+}
+
+.dark .toggle-btn {
+  --clr-l: 60%;
+}
+
+#toggle {
+  margin: 0;
+  width: 2rem;
+  height: 2rem;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+#toggle:checked + label {
+  left: 2.3rem;
+  background: hsl(var(--clr-h), var(--clr-s), var(--clr-l-40));
+}
+
+label {
+  position: absolute;
+  top: 50%;
+  left: 0.2rem;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  width: 1.5rem;
+  height: 1.5rem;
+  background: hsl(var(--clr-h), var(--clr-s), var(--clr-l-100));
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-transition: left 0.5s ease-in-out, background 0.5s ease-in-out;
+  transition: left 0.5s ease-in-out, background 0.5s ease-in-out;
 }
 
 @media (prefers-color-scheme: dark) {
